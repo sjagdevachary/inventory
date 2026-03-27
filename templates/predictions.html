@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Predictions{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>🤖 Demand Predictions</h1>
+    <p>ML-powered demand forecasting and smart restock suggestions</p>
+</div>
+
+<!-- Prediction Controls -->
+<div class="toolbar">
+    <div class="toolbar-actions">
+        <select id="predictionDays" class="form-input" style="width: 200px;" onchange="loadPredictions()">
+            <option value="7">Next 7 Days</option>
+            <option value="14">Next 14 Days</option>
+            <option value="30" selected>Next 30 Days</option>
+            <option value="60">Next 60 Days</option>
+        </select>
+        <button class="btn btn-primary" onclick="loadPredictions()">🔄 Refresh Predictions</button>
+    </div>
+</div>
+
+<!-- Restock Suggestions -->
+<div class="card" style="margin-bottom: 24px;">
+    <div class="card-header">
+        <h3 class="card-title">📋 Smart Restock Suggestions</h3>
+        <span class="badge badge-warning" id="restockCount">Loading...</span>
+    </div>
+
+    <div id="restockList">
+        <div class="loading-overlay">
+            <div class="spinner"></div>
+            <span>Analyzing inventory with ML...</span>
+        </div>
+    </div>
+</div>
+
+<!-- Per-Product Prediction Cards -->
+<h3 style="margin-bottom: 16px; font-size: 1.1rem; font-weight: 700;">📈 Per-Product Demand Forecast</h3>
+<div class="prediction-grid" id="predictionGrid">
+    <div class="loading-overlay" style="grid-column: 1 / -1;">
+        <div class="spinner"></div>
+        <span>Running predictions...</span>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/predictions.js') }}"></script>
+{% endblock %}

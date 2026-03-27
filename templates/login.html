@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block public_content %}
+<div class="login-page">
+    <div class="login-card">
+        <div class="logo">
+            <span class="logo-icon">📦</span>
+            <h1>SmartInventory</h1>
+            <p class="subtitle">Sign in to manage your inventory</p>
+        </div>
+
+        <form method="POST" action="/login" id="loginForm">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" class="form-input"
+                       placeholder="admin@inventory.com" required autocomplete="email">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-input"
+                       placeholder="Enter your password" required autocomplete="current-password">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block" id="loginBtn">
+                Sign In →
+            </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border);">
+            <p style="font-size: 0.8rem; color: var(--text-muted);">
+                Demo credentials:<br>
+                <strong style="color: var(--text-secondary);">admin@inventory.com</strong> /
+                <strong style="color: var(--text-secondary);">admin123</strong>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

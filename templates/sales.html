@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Sales{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>💰 Sales Management</h1>
+    <p>Record new sales and view sales history</p>
+</div>
+
+<!-- Record Sale Form -->
+<div class="card" style="margin-bottom: 24px;">
+    <div class="card-header">
+        <h3 class="card-title">🛒 Record a Sale</h3>
+    </div>
+
+    <form id="saleForm" onsubmit="recordSale(event)" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; align-items: end;">
+        <div class="form-group" style="margin-bottom: 0;">
+            <label for="saleProduct">Product</label>
+            <select id="saleProduct" class="form-input" required>
+                <option value="">Select product</option>
+            </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+            <label for="saleQuantity">Quantity Sold</label>
+            <input type="number" id="saleQuantity" class="form-input" placeholder="1" min="1" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+            <label for="saleDate">Sale Date</label>
+            <input type="date" id="saleDate" class="form-input" required>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-success btn-block" id="recordSaleBtn">
+                ✅ Record Sale
+            </button>
+        </div>
+    </form>
+</div>
+
+<!-- Sales History -->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">📋 Sales History</h3>
+        <span class="badge badge-info" id="salesCount">0 records</span>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="data-table" id="salesTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Product</th>
+                    <th>Qty Sold</th>
+                    <th>Revenue</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody id="salesBody">
+                <tr>
+                    <td colspan="5">
+                        <div class="loading-overlay">
+                            <div class="spinner"></div>
+                            <span>Loading sales...</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/sales.js') }}"></script>
+{% endblock %}
